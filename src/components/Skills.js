@@ -8,21 +8,30 @@ const randomIntFromInterval = (min, max) => {
 
 const Skill = ({ name }) => {
   const [position, setPosition] = useState({
-    top: 0,
-    left: 0,
+    x: 0,
+    y: 0,
+    opacity: 0,
   });
 
   useEffect(() => {
     setPosition({
-      top: randomIntFromInterval(0, 80) + "%",
-      left: randomIntFromInterval(0, 80) + "%",
+      x: randomIntFromInterval(-400, 400),
+      y: randomIntFromInterval(-400, 400),
+      opacity: 80,
     });
   }, []);
 
   return (
     <motion.div
       className={`absolute flex items-center justify-center rounded-full font-semibold bg-primary text-light py-3 px-6 shadow-dark cursor-pointer`}
-      style={position}
+      initial={{
+        x: 0,
+        y: 0,
+        opacity: 0,
+      }}
+      whileInView={position}
+      viewport={{ once: true }}
+      transition={{ duration: 1, easing: "easeInOut" }}
       whileHover={{ scale: 1.5, zIndex: 10 }}
       whileTap={{ cursor: "grabbing" }}
       drag
