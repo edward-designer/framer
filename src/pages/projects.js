@@ -15,7 +15,7 @@ import project1 from "../../public/images/projects/crypto-screener-cover-image.j
 const FeaturedProject = ({ type, title, summary, img, link, github }) => {
   return (
     <motion.article
-      className="relative w-full flex items-center justify-between rounded-3xl rounded-br-2xl border border-solid border-dark bg-light shadow-2xl p-12 relative"
+      className="w-full flex items-center justify-between rounded-3xl rounded-br-2xl border border-solid border-dark bg-light shadow-2xl p-12 relative md:flex-col md:p-6"
       initial={{ y: 50, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, type: "spring" }}
@@ -30,24 +30,34 @@ const FeaturedProject = ({ type, title, summary, img, link, github }) => {
       <Link
         href={link}
         target="_blank"
-        className="w-1/2 cursor-pointer overflow-hidden rounded-lg object-cover"
+        className="w-1/2 cursor-pointer overflow-hidden rounded-lg object-cover md:w-full"
       >
         <Image
           src={img}
           alt={title}
           className="w-full h-auto inline-block hover:scale-110 transition-all"
+          sizes="
+                    (max-width: 768px) 100vw,
+                    (max-width: 1200px) 50vw,
+                    33vw
+                "
+          priority
         />
       </Link>
-      <div className="w-1/2 pl-6 flex items-start flex-col justify-between">
-        <span className="text-primary font-medium text-xl">{type}</span>
+      <div className="w-1/2 pl-6 flex items-start flex-col justify-between md:w-full md:pl-0 md:mt-4">
+        <span className="text-primary font-medium text-xl md:text-xs">
+          {type}
+        </span>
         <Link
           href={link}
           target="_blank"
-          className="hover:underline underline-offset-2 "
+          className="hover:underline underline-offset-2"
         >
-          <h2 className="my-2 w-full text-left text-4xl font-bold">{title}</h2>
+          <h2 className="my-2 w-full text-left text-4xl font-bold md:text-2xl md:my-1">
+            {title}
+          </h2>
         </Link>
-        <p className="my-2 font-medium text-dark">{summary}</p>
+        <p className="my-2 font-medium text-dark md:text-xs">{summary}</p>
         <div className="mt-2 flex items-center">
           <Link href={github} target="_blank" className="w-10">
             <GithubIcon />
@@ -81,13 +91,17 @@ const Project = ({ type, title, img, link, github }) => {
         />
       </Link>
       <div className="w-full mt-4 flex items-start flex-col justify-between">
-        <span className="text-primary font-medium text-xl">{type}</span>
+        <span className="text-primary font-medium text-xl md:text-xs">
+          {type}
+        </span>
         <Link
           href={link}
           target="_blank"
           className="hover:underline underline-offset-2 "
         >
-          <h2 className="my-2 w-full text-left text-3xl font-bold">{title}</h2>
+          <h2 className="my-2 w-full text-left text-3xl font-bold md:text-2xl md:my-1">
+            {title}
+          </h2>
         </Link>
         <div className="w-full mt-2 flex items-center justify-between">
           <Link
@@ -117,9 +131,9 @@ const projects = () => {
         <Layout className="pt-16">
           <AnimatedText
             text="Imagination Trumps Knowledge!"
-            className="text-8xl mb-16"
+            className="text-8xl mb-16 lg:text-7xl sm:text-6xl xs:text-4xl"
           />
-          <div className="grid grid-cols-12 gap-24 gap-y-32">
+          <div className="grid grid-cols-12 gap-24 gap-y-32 lg:gap-8 lg:gap-y-24">
             <div className="col-span-12">
               <FeaturedProject
                 title="Crypto Screener Application"
@@ -132,7 +146,7 @@ local currency."
                 type="Featured Project"
               />
             </div>
-            <div className="col-span-6">
+            <div className="col-span-6 md:col-span-12">
               <Project
                 title="Crypto Screener Application"
                 img={project1}
@@ -144,7 +158,7 @@ local currency."
                 type="Project"
               />
             </div>
-            <div className="col-span-6">
+            <div className="col-span-6 md:col-span-12">
               <Project
                 title="Crypto Screener Application"
                 img={project1}
@@ -168,7 +182,7 @@ local currency."
                 type="Featured Project"
               />
             </div>
-            <div className="col-span-6">
+            <div className="col-span-6 md:col-span-12">
               <Project
                 title="Crypto Screener Application"
                 img={project1}
@@ -180,7 +194,7 @@ local currency."
                 type="Project"
               />
             </div>
-            <div className="col-span-6">
+            <div className="col-span-6 md:col-span-12">
               <Project
                 title="Crypto Screener Application"
                 img={project1}

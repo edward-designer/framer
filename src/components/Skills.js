@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { motion, dragControls } from "framer-motion";
 
@@ -7,13 +7,22 @@ const randomIntFromInterval = (min, max) => {
 };
 
 const Skill = ({ name }) => {
+  const [position, setPosition] = useState({
+    top: 0,
+    left: 0,
+  });
+
+  useEffect(() => {
+    setPosition({
+      top: randomIntFromInterval(0, 80) + "%",
+      left: randomIntFromInterval(0, 80) + "%",
+    });
+  }, []);
+
   return (
     <motion.div
-      className={`absolute flex items-center justify-center rounded-full font-semibold bg-primary/80 text-light py-3 px-6 shadow-dark cursor-pointer`}
-      style={{
-        top: randomIntFromInterval(0, 80) + "%",
-        left: randomIntFromInterval(0, 80) + "%",
-      }}
+      className={`absolute flex items-center justify-center rounded-full font-semibold bg-primary text-light py-3 px-6 shadow-dark cursor-pointer`}
+      style={position}
       whileHover={{ scale: 1.5, zIndex: 10 }}
       whileTap={{ cursor: "grabbing" }}
       drag
@@ -37,7 +46,9 @@ const Skill = ({ name }) => {
 const Skills = () => {
   return (
     <>
-      <h2 className="font-bold text-8xl mt-64 w-full text-center">Skills</h2>
+      <h2 className="font-bold text-8xl mt-64 w-full text-center lg:my-16 lg:mt-32 lg:text-4xl">
+        Skills
+      </h2>
       <div className="aspect-square w-full relative flex items-center justify-center rounded-full bg-circularLight">
         <Skill name="HTML" />
         <Skill name="CSS" />

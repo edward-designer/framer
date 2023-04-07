@@ -14,7 +14,7 @@ import { motion, useMotionValue } from "framer-motion";
 
 const FeaturedArticle = ({ img, title, time, summary, link }) => {
   return (
-    <li className="relative col-span-1 w-full p-4 bg-light border border-solid border-dark rounded-2xl">
+    <li className="relative col-span-1 w-full p-4 bg-light border border-solid border-dark rounded-2xl md:col-span-2">
       <div className="absolute top-0 -right-3 -z-10 w-[102%] h-[103%] rounded-[2rem] bg-dark rounded-br-3xl" />
       <Link
         href={link}
@@ -25,13 +25,19 @@ const FeaturedArticle = ({ img, title, time, summary, link }) => {
           src={img}
           alt={title}
           className="w-full h-auto transition-all hover:scale-110"
+          sizes="
+                    (max-width: 768px) 100vw,
+                    (max-width: 1200px) 50vw,
+                    33vw
+                "
+          priority
         />
       </Link>
       <Link href={link} target="_blank">
-        <h2 className="capitalize text-2xl font-bold my-2 mt-4 hover:underline">
+        <h2 className="capitalize text-2xl font-bold my-2 mt-4 hover:underline md:text-xl">
           {title}
         </h2>
-        <p className="text-sm mb-2">{summary}</p>
+        <p className="text-sm mb-2 md:text-xs">{summary}</p>
         <span className="text-primary font-semibold">{time}</span>
       </Link>
     </li>
@@ -64,7 +70,7 @@ const MovingImg = ({ title, img, link }) => {
       onMouseMove={handleMouse}
       onMouseLeave={handleMouseLeave}
     >
-      <h2 className="capitalize text-xl font-semibold hover:underline">
+      <h2 className="capitalize text-xl font-semibold hover:underline md:text-base">
         {title}
       </h2>
       <FramerImage
@@ -78,7 +84,7 @@ const MovingImg = ({ title, img, link }) => {
         ref={imgRef}
         src={img}
         alt={title}
-        className={`w-96 h-auto absolute rounded-lg z-10 top-24 -left-20 ${
+        className={`w-96 h-auto absolute rounded-lg z-10 top-24 -left-20 md:hidden ${
           !isShowing && "hidden"
         }`}
       />
@@ -111,7 +117,7 @@ const articles = () => {
         <Layout className="pt-16">
           <AnimatedText
             text="Words Can Change The World! "
-            className="text-8xl mb-16"
+            className="text-8xl mb-16 lg:text-7xl sm:text-6xl xs:text-4xl"
           />
           <ul className="grid grid-cols-2 gap-16">
             <FeaturedArticle
